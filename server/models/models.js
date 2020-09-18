@@ -1,17 +1,35 @@
 const mongoose = require('mongoose');
-const { NestedSchema } = require('./nested.model');
+// const { PetSchema } = require('./nested.model');
 
-const AuthorSchema = new mongoose.Schema({
+const PetSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, "Field is required."],
-        minlength: [3, "Must be 3 characters or more."]
+        required: [true, "{PATH} is required"],
+        minlength: [3, "{PATH} must be {MINLENGTH} characters or more"]
     },
-    books: [NestedSchema]
+    type: {
+        type: String,
+        required: [true, "{PATH} is required."],
+        minlength: [3, "{PATH} must be {MINLENGTH} characters or more"]
+    },
+    description: {
+        type: String,
+        required: [true, "{PATH} is required."],
+        minlength: [3, "{PATH} must be {MINLENGTH} characters or more"]
+    },
+    skill1: {
+        type: String,
+    },
+    skill2: {
+        type: String,
+    },
+    skill3: {
+        type: String,
+    },
 }, { timestamps: true });
 
-const Author = mongoose.model("Author", AuthorSchema);
+const Pet = mongoose.model("Pet", PetSchema);
 
 module.exports = {
-    Author
+    Pet
 }
